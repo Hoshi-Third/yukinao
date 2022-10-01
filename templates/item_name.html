@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>商品名リストを編集する</h3>
+<br>
+<h4>商品名</h4>
+
+<p>
+    <table>
+        <tr>
+            <th>商品名</th>
+            <th>値段</th>
+            <th>消去</th>
+        </tr>
+        {% for data in item_name %}
+            <tr>
+                <td>{{ data.item_name }}</td>
+                <td>{{ data.item_value }}円</td>
+                <td><a href="/item_delete/{{data.id}}">消去</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</p>
+
+<form action="/upd_item" method="POST">
+<p><label>商品名：<input type="text" name="item_name" value=''></label></p>
+<p><label>値段：<input type="number" name="item_value" value=''></label></p>
+<p><button type="submit">追加</button></p>
+</form>
+
+<p><button onclick = "location.href = '/home'">ホームに戻る</button></p>
+
+{% endblock %}

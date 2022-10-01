@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>在庫管理</h3>
+<p>
+    <table>
+        <tr>
+            <th>店舗名</th>
+            <th>日付</th>
+            <th>商品名</th>
+            <th>納品前の在庫数</th>
+            <th>現在庫数</th>
+        </tr>
+        {% for data in index %}
+            <tr>
+                <td>{{ data.store_name }}</td>
+                <td>{{ data.date }}</td>
+                <td>{{ data.item_name }}</td>
+                <td>{{ data.remain }}</td>
+                <td>{{ data.left }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</p>
+<p><button onclick = "location.href = '/load_midori'">みどりのサービス 在庫データ取得</button></p>
+<p><button onclick = "location.href = '/load_ito'">伊藤チェーン 在庫データ取得</button></p>
+<p><button onclick = "location.href = '/load_sakurakko'">さくらっこ 在庫データ取得</button></p>
+<p><a href="/home">納品管理を確認する</a></p>
+
+{% endblock %}

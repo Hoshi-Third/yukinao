@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>在庫管理を編集する</h3>
+
+<form action="/update/{{each_sales.id}}" method="POST">
+<input type="hidden" name="id"   value={{each_sales.id}}>
+<p>ID　：{{each_sales.id}}</p>
+<p>{{stform.store_name.label()}}
+    {{stform.store_name()}}
+</p>
+<p><input type="date" name="date"   value={{each_sales.date}} required="required">
+    <!--idをscript内の#以下と一致させる-->
+</p>
+<p>{{itform.item_name.label()}}
+    {{itform.item_name()}}</p>
+<p>納品前の在庫数：<input type="number" name="remain"  value={{each_sales.remain}} required="required"></p>
+<p>納品後の在庫数：<input type="number" name="left"  value={{each_sales.left}} required="required"></p>
+<p><button type="submit">更新</button></p>
+</form>
+
+
+<p><button onclick="history.back()">戻る</button></p>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>納品管理</h3>
+<p>
+    <table>
+        <tr>
+            <th>店舗名<form action="/home" method="get">
+                <select name = 'store_name' onchange = 'submit(this.form)'>
+                    {% for choice in store_choices %}
+                        {% if choice == session.store_name %}
+                            <option value= "{{choice}}" selected>{{choice}}</option>
+                        {% else %}
+                        <option value= "{{choice}}">{{choice}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </form></th>
+            <th>日付<form action="/home" method="get">
+                <select name = 'date_choice' onchange = 'submit(this.form)'>
+                    {% for choice in date_choices %}
+                        {% if choice == session.date_choice %}
+                            <option value= "{{choice}}" selected>{{choice}}</option>
+                        {% else %}
+                        <option value= "{{choice}}">{{choice}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </form></th>
+            <th>商品名</th>
+            <th>納品前の在庫数</th>
+            <th>納品後の在庫数</th>
+            <th>編集</th>
+            <th>消去</th>
+        </tr>
+        {% for data in each_sales %}
+            <tr>
+                <td>{{ data.store_name }}</td>
+                <td>{{ data.date }}</td>
+                <td>{{ data.item_name }}</td>
+                <td>{{ data.remain }}</td>
+                <td>{{ data.left }}</td>
+                <td><a href="/edit/{{data.id}}">編集</a></td>
+                <td><a href="/delete/{{data.id}}">消去</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</p>
+<p><a href="/recent">各店舗の在庫を確認する</a></p>
+<p><a href="/insert">納品管理を追加する</a></p>
+<p><a href="/edit_store">店舗名リストを編集する</a></p>
+<p><a href="/edit_item">商品名リストを編集する</a></p>
+<p><a href="/logout">ログアウト</a></p>
+
+{% endblock %}

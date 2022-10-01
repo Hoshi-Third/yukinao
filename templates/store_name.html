@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>店舗名リストを編集する</h3>
+<br>
+<h4>店舗名</h4>
+
+<p>
+    <table>
+        <tr>
+            <th>店舗名</th>
+            <th>消去</th>
+        </tr>
+        {% for data in store_name %}
+            <tr>
+                <td>{{ data.store_name }}</td>
+                <td><a href="/store_delete/{{data.id}}">消去</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</p>
+
+<form action="/upd_store" method="POST">
+<p><input type="text" name="store_name" value=''></p>
+<p><button type="submit">追加</button></p>
+</form>
+
+<p><button onclick = "location.href = '/home'">ホームに戻る</button></p>
+
+{% endblock %}
